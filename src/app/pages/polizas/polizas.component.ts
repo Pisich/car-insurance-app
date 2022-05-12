@@ -14,7 +14,7 @@ export class PolizasComponent implements OnInit {
     http
       .get("https://paep22-backend.herokuapp.com/poliza")
       .subscribe((response) => {
-        console.log(response);
+        this.totalPolizas = response;
       });
   }
 
@@ -24,10 +24,10 @@ export class PolizasComponent implements OnInit {
   // })
 
   ngOnInit() {
-    this.http
-      .get<any>("https://api.npms.io/v2/search?q=scope:angular")
-      .subscribe((data) => {
-        this.totalPolizas = data.total;
-      });
+    // this.http
+    //   .get<any>("https://api.npms.io/v2/search?q=scope:angular")
+    //   .subscribe((data) => {
+    //     this.totalPolizas = data.total;
+    //   });
   }
 }

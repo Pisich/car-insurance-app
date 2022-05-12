@@ -100,6 +100,32 @@
               </tr>
             </thead>
             <tbody>
+              <tr
+              **ngFor="let poliza of totalPolizas">
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                      <img alt="Image placeholder" src="assets/img/theme/team-2-800x800.jpg">
+                    </a>
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{poliza.asegurado}}</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  {{poliza.productName}}
+                </td>
+                <td>
+
+                  {{poliza.polizaNumber}
+
+                </td>
+                <td>
+                  {{poliza.fechaVencimiento}}
+                </td>
+
+
+              </tr>
 
               <tr>
                 <th scope="row">
