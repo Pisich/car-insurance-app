@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 // import { PolizasFormComponent } from "../polizas/polizas-form.component";
 import { HttpClient } from "@angular/common/http";
+import { response } from "express";
 
 @Component({
   selector: "app-polizas",
@@ -9,7 +10,13 @@ import { HttpClient } from "@angular/common/http";
 })
 export class PolizasComponent implements OnInit {
   totalPolizas;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    http
+      .get("https://paep22-backend.herokuapp.com/poliza")
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
 
   // const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' }
   // this.http.get<any>('https://api.npms.io/v2/search?q=scope:angular', { headers }).subscribe(data => {
