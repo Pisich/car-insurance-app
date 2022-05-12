@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TablesComponent implements OnInit {
 
-  constructor() { }
+  totalSiniestros;
+  constructor(private http: HttpClient) {
+    http
+      .get("https://paep22-backend.herokuapp.com/siniestro/last24hrs")
+      .subscribe((response) => {
+        console.log(response);
+        this.totalSiniestros = response;
+      });
+  }
 
   ngOnInit() {
   }

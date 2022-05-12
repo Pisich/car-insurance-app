@@ -35,18 +35,18 @@ export const ROUTES: RouteInfo[] = [
     class: "",
   },
 
-  {
-    path: "/login",
-    title: "Iniciar Sesión",
-    icon: "ni-key-25 text-info",
-    class: "",
-  },
-  {
-    path: "/register",
-    title: "Registrarse",
-    icon: "ni-circle-08 text-pink",
-    class: "",
-  },
+  // {
+  //   path: "/login",
+  //   title: "Iniciar Sesión",
+  //   icon: "ni-key-25 text-info",
+  //   class: "",
+  // },
+  // {
+  //   path: "/register",
+  //   title: "Registrarse",
+  //   icon: "ni-circle-08 text-pink",
+  //   class: "",
+  // },
 ];
 
 @Component({

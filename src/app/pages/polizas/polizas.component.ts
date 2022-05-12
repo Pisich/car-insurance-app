@@ -14,9 +14,12 @@ export class PolizasComponent implements OnInit {
     http
       .get("https://paep22-backend.herokuapp.com/poliza")
       .subscribe((response) => {
+        console.log(response);
         this.totalPolizas = response;
+        console.log(this.totalPolizas);
       });
   }
+
 
   // const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' }
   // this.http.get<any>('https://api.npms.io/v2/search?q=scope:angular', { headers }).subscribe(data => {

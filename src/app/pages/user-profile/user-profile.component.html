@@ -1,12 +1,12 @@
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-  style="min-height: 600px; background-image: url(assets/img/theme/team-1-800x800.jpg); background-size: cover; background-position: center top;">
+  style="min-height: 600px; background-image: url({{usuario.imgLink}}); background-size: cover; background-position: center top;">
   <!-- Mask -->
   <span class="mask bg-gradient-danger opacity-8"></span>
   <!-- Header container -->
   <div class="container-fluid d-flex align-items-center">
     <div class="row">
       <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white">Hola Diego Arana</h1>
+        <h1 class="display-2 text-white">Hola {{usuario.name}} {{usuario.lastname}}</h1>
         <p class="text-white mt-0 mb-5">Esta es tu página de Perfil, aquí podrás visualizar los datos de tu perfil y
           editarlos a tu gusto.</p>
 
@@ -22,7 +22,7 @@
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
               <a href="javascript:void(0)">
-                <img src="assets/img/theme/team-1-800x800.jpg" class="rounded-circle">
+                <img src="{{usuario.imgLink}}" class="rounded-circle">
               </a>
             </div>
           </div>
@@ -36,16 +36,15 @@
 
           <div class="text-center mt-md-5 pt-2">
             <h3>
-              Diego Arana
+              {{usuario.name}} {{usuario.lastname}}
             </h3>
 
             <div class="h5 mt-4">
-              <i class="ni business_briefcase-24 mr-2"></i>Agente de Seguros
+              <i class="ni business_briefcase-24 mr-2"></i>{{usuario.puesto}}
             </div>
 
             <hr class="my-4" />
-            <p>Me encanta darle el servicio que se merece a mis clientes, siempre con paciencia, profesionalismo, y
-              mucha alegría.</p>
+            <p>{{usuario.descripcion}}</p>
 
           </div>
         </div>
@@ -62,7 +61,7 @@
           </div>
         </div>
         <div class="card-body text-center">
-          <form>
+          <form #templateForm="ngForm" (submit)="onSubmit(templateForm.value)">
             <h6 class="heading-small text-muted mb-4">Editar Información</h6>
             <div class="pl-lg-4">
               <div class="row justify-content-center">
@@ -74,40 +73,40 @@
                         <span class="input-group-text"><i class="fa fa-at"></i></span>
                       </div>
                       <input type="email" class="form-control form-control-alternative" id="exampleFormControlInput1"
-                        placeholder="correo@ejemplo.com">
+                        placeholder="" value="diegoaranab@gmail.com" name="email" ngModel>
                     </div>
 
                     <div class="input-group input-group-alternative mb-4">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-user-md"></i></span>
                       </div>
-                      <input class="form-control form-control-alternative" placeholder="Nombre" type="text">
+                      <input name="name" class="form-control form-control-alternative" placeholder="Nombre" type="text" ngModel>
                     </div>
 
                     <div class="input-group input-group-alternative mb-4">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-user-md"></i></span>
                       </div>
-                      <input class="form-control form-control-alternative" placeholder="Apellido" type="text">
+                      <input name="lastname" class="form-control form-control-alternative" placeholder="Apellido" type="text" ngModel>
                     </div>
 
                     <div class="input-group input-group-alternative mb-4">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-user-md"></i></span>
                       </div>
-                      <input class="form-control form-control-alternative" placeholder="Puesto" type="text">
+                      <input name="puesto" class="form-control form-control-alternative" placeholder="Puesto" type="text" ngModel>
                     </div>
 
                     <div class="input-group input-group-alternative mb-4">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-comment"></i></span>
                       </div>
-                      <input class="form-control form-control-alternative" placeholder="Descripción" type="text">
+                      <input name="descripcion" class="form-control form-control-alternative" placeholder="Descripción" type="text" ngModel>
                     </div>
 
 
 
-                    <button type="button" class="btn btn-success">Guardar Cambios</button>
+                    <button  type="submit" class="btn btn-success">Guardar Cambios</button>
 
                   </div>
                 </div>

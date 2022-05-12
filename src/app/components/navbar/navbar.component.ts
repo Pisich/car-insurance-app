@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +13,14 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location,  private element: ElementRef, private router: Router) {
+  usuario;
+  constructor(location: Location,http: HttpClient,  private element: ElementRef, private router: Router) {
     this.location = location;
+    http
+      .get("https://paep22-backend.herokuapp.com/user/diegoaranab@gmail.com")
+      .subscribe((response) => {
+        this.usuario = response;
+      });
   }
 
   ngOnInit() {
