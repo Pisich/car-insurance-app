@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 8080;
-const frontAppName = 'argon-dashboard-angular'; // taken from package.json name property
+// const port = process.env.PORT || 8080;
+// const frontAppName = 'argon-dashboard-angular'; // taken from package.json name property
 
-app.use(express.static(`./dist/${frontAppName}`));
+app.use(express.static(__dirname + '/dist'));
 
 app.get('*', (req, res) => {
-  res.sendFile('index.html', {root: `dist/${frontAppName}`});
+  res.status(200).sendFile(__dirname + '/dist/index.html');
 });
 
-app.listen(port, () => console.log('Angular ready!!! on port ' + port));
+app.listen(process.env.PORT || 8080);
