@@ -15,7 +15,8 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 // import { PolizasFormComponent } from "./pages/polizas/polizas-form.component";
 import { ClientesComponent } from './clientes/clientes.component';
-
+import { PolizasComponent } from './pages/polizas/polizas.component';
+import { TablesComponent } from './pages/tables/tables.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,8 @@ import { ClientesComponent } from './clientes/clientes.component';
     AppComponent,
     // PolizasFormComponent,
     AdminLayoutComponent,
+    PolizasComponent,
+    TablesComponent,
     AuthLayoutComponent,
     ClientesComponent
   ],

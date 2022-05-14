@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 
 @Component({
-  selector: 'app-tables',
-  templateUrl: './tables.component.html',
-  styleUrls: ['./tables.component.scss']
+  selector: 'app-customers',
+  templateUrl: './customers.component.html',
+  styleUrls: ['./customers.component.scss']
 })
-export class TablesComponent implements OnInit {
+export class CustomersComponent implements OnInit {
 
   totalSiniestros: Observable <any>;
   siniestrosCount: BigInteger;

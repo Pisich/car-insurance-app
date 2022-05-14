@@ -10,7 +10,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Vencimientos Del Mes</h5>
-                    <span class="h2 font-weight-bold mb-0">4</span>
+                    <span class="h2 font-weight-bold mb-0">{{polizasCount}}</span>
                   </div>
                   <div class="col-auto">
                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -108,140 +108,24 @@
               </tr>
             </thead>
             <tbody>
-
-              <div *ngFor="let poliza of totalPolizas; index as i">
-                <tr>
-                  {{i}}
-                  <th scope="row">
-                    <div class="media align-items-center">
-                      <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                        <img alt="Image placeholder" src="assets/img/theme/team-2-800x800.jpg">
-                      </a>
-                      <div class="media-body">
-                        <span class="mb-0 text-sm">{{poliza.asegurado}}</span>
-                      </div>
-                    </div>
-                  </th>
-                  <td>
-                    {{poliza.productName}}
-                  </td>
-                  <td>
-
-                    {{poliza.polizaNumber}}
-
-                  </td>
-                  <td>
-                    {{poliza.fechaVencimiento}}
-                  </td>
-
-
-                </tr>
-
-              </div>
-
-
-              <tr>
+              <tr *ngFor="let poliza of totalPolizas">
                 <th scope="row">
                   <div class="media align-items-center">
-                    <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                      <img alt="Image placeholder" src="assets/img/theme/team-2-800x800.jpg">
-                    </a>
                     <div class="media-body">
-                      <span class="mb-0 text-sm">Daniela Ramos</span>
+                      <span class="mb-0 text-sm">{{poliza.asegurado}}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  Seguro Automovilístico
+                  {{poliza.productName}}
                 </td>
                 <td>
-
-                  49JF40EJW0FE
-
+                  {{poliza.polizaNumber}}
                 </td>
                 <td>
-                  23 de Agosto del 2022
+                  {{poliza.fechaVencimiento | date}} {{poliza.fechaVencimiento | date:'longTime'}}
                 </td>
-
-
               </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                      <img alt="Image placeholder" src="assets/img/theme/team-1-800x800.jpg">
-                    </a>
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Diego Arana</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Seguro de Gastos Médicos
-                </td>
-                <td>
-
-                  405T40J59T0
-
-                </td>
-                <td>
-                  14 de Mayo del 2022
-                </td>
-
-
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                      <img alt="Image placeholder" src="assets/img/theme/team-1-800x800.jpg">
-                    </a>
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Diego Arana</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Seguro de Vida
-                </td>
-                <td>
-
-                  DJ9300JWD0
-
-                </td>
-                <td>
-                  11 de Mayo del 2022
-                </td>
-
-
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                      <img alt="Image placeholder" src="assets/img/theme/team-2-800x800.jpg">
-                    </a>
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Daniela Ramos</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Seguro De Hogar
-                </td>
-                <td>
-
-                  DJ3I30W'3
-
-                </td>
-                <td>
-                  11 de Mayo del 2022
-                </td>
-
-
-              </tr>
-
-
             </tbody>
           </table>
         </div>
@@ -271,14 +155,4 @@
     </div>
   </div>
 
-</div>
-<div *ngIf="totalPolizas.length != 0">
-  <div *ngFor="let poliza of totalPolizas">
-    {{console.log(poliza)}}
-
-    {{poliza.asegurado}}
-    {{poliza.productName}}
-    {{poliza.polizaNumber}}
-    {{poliza.fechaVencimiento}}
-  </div>
 </div>

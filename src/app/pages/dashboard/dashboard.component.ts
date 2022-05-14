@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 // core components
 import {
@@ -21,8 +23,24 @@ export class DashboardComponent implements OnInit {
   public salesChart;
   public clicked: boolean = true;
   public clicked1: boolean = false;
+  c_polizas: BigInteger;
+  c_siniestros: BigInteger;
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
+
+    this.http
+    .get<any>("https://paep22-backend.herokuapp.com/poliza")
+    .subscribe((data) => {
+     this.c_polizas = data.length;
+    });
+
+    this.http
+    .get<any>("https://paep22-backend.herokuapp.com/siniestro/last24hrs")
+    .subscribe((data) => {
+     this.c_siniestros = data.length;
+    });
 
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],

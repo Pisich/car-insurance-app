@@ -8,8 +8,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Siniestros Activos (24 Hrs)</h5>
-                  <span class="h2 font-weight-bold mb-0">{{siniestrosCount}}</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Clientes Registrados</h5>
+                  <span class="h2 font-weight-bold mb-0">COUNT</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -19,7 +19,7 @@
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 5.85%</span>
-                <span class="text-wrap">Desde las últimas 24 Horas </span>
+                <span class="text-wrap"></span>
               </p>
             </div>
           </div>
@@ -40,7 +40,7 @@
     <div class="col">
       <div class="card bg-default shadow">
         <div class="card-header bg-transparent border-0">
-          <h3 class="text-white mb-0">Siniestros</h3>
+          <h3 class="text-white mb-0">Clientes</h3>
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-dark table-flush">
@@ -59,20 +59,20 @@
                   <div class="media align-items-center">
 
                     <div class="media-body">
-                      <span class="mb-0 text-sm">{{siniestro.user_email}}</span>
+                      <span class="mb-0 text-sm">EMAIL</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  {{siniestro.polizaTipo}}
+                  CLIENTE
                 </td>
                 <td>
 
-                  {{siniestro.polizaNumber}}
+                  CLIENTE
 
                 </td>
                 <td>
-                  {{siniestro.fecha | date}} {{siniestro.fecha | date:'longTime'}}
+                  CLIENTE
                 </td>
               </tr>
             </tbody>
