@@ -29,7 +29,8 @@ export class CustomersComponent implements OnInit {
     this.getCustomers();
   }
 
-  async onEdit(value) {
+  async onEdit(value, email) {
+    value['email'] = email;
     console.log(value);
 
     this.http

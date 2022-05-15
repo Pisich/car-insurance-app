@@ -33,42 +33,85 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <input type="text" id="productName" ngModel name="productName" #productName="ngModel"
-                      (change)="log(productName)" placeholder="Nombre de Póliza"
-                      class="form-control form-control-alternative" required>
+                      placeholder="Nombre de Póliza" class="form-control form-control-alternative" required>
+                    <div *ngIf="productName.touched && !productName.valid" class="alert alert-info mt-1" role="alert">
+                      <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                      <span class="alert-inner--text"> Asegúrate de haber llenado el campo</span>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" id="aseguradora" ngModel name="aseguradora" placeholder="Aseguradora"
-                      class="form-control form-control-alternative" required>
+                    <input type="text" id="aseguradora" ngModel name="aseguradora" #aseguradora="ngModel"
+                      placeholder="Aseguradora" class="form-control form-control-alternative" required>
+                    <div *ngIf="aseguradora.touched && !aseguradora.valid" class="alert alert-info mt-1" role="alert">
+                      <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                      <span class="alert-inner--text">Asegúrate de haber llenado el campo</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <!-- <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" id="polizaNumber" ngModel name="polizaNumber" #polizaNumber="ngModel"
+                      placeholder="Número de Póliza" class="form-control form-control-alternative" required>
+                    <div *ngIf="polizaNumber.touched && !polizaNumber.valid" class="alert alert-info mt-1" role="alert">
+                      <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                      <span class="alert-inner--text">Asegúrate de haber llenado el campo</span>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-md-12">
+
+                  <div class="form-group">
+
+
+                    <select ngModel id="asegurado" name="asegurado" #asegurado="ngModel"
+                      class="form-control form-control-alternative">
+                      <option hidden selected>Asegurado</option>
+                      <option *ngFor="let cliente of totalClientes">
+                        {{cliente.name}} {{cliente.lastName}}</option>
+                    </select>
+                    <div *ngIf="asegurado.touched && !asegurado.valid" class="alert alert-info mt-1" role="alert">
+                      <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                      <span class="alert-inner--text">Asegúrate de haber llenado el campo</span>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" id="polizaNumber" ngModel name="polizaNumber" placeholder="Número de Póliza"
+                    <input type="text" id="tipo" ngModel name="tipo" #tipo="ngModel" placeholder="Tipo"
                       class="form-control form-control-alternative" required>
+                    <div *ngIf="tipo.touched && !tipo.valid" class="alert alert-info mt-1" role="alert">
+                      <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                      <span class="alert-inner--text">Asegúrate de haber llenado el campo</span>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" id="asegurado" ngModel name="asegurado" placeholder="Asegurado"
-                      class="form-control form-control-alternative" required>
+                    <input type="file" id="filename" ngModel name="filename" #filename="ngModel" placeholder="Archivo"
+                    class="form-control form-control-alternative" required (input)="selectFile($event)">
                   </div>
+                  
+                  <!-- <button type="submit" class="btn btn-success">Añadir Póliza</button> -->
                 </div>
+                
               </div>
               <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input type="text" id="tipo" ngModel name="tipo" placeholder="Tipo"
-                      class="form-control form-control-alternative" required>
-                  </div>
-                </div>
                 <div class="col-md-6">
                   <button type="submit" class="btn btn-success">Añadir Póliza</button>
                 </div>
+                <!-- <div class="col-md-6">
+                  <button [disabled]="image === undefined" (click)="uploadPoliza()" class="btn btn-success">Subir Archivo</button>
+                </div> -->
               </div>
+              
+
+
             </form>
 
           </div>
@@ -134,6 +177,7 @@
                     <div class="media-body">
                       <button class="btn btn-primary" (click)="myFunction(poliza.productName)">Editar</button>
                       <button class="btn btn-danger" (click)="myFunction(poliza.polizaNumber)">Eliminar</button>
+                      <a href="{{poliza.polizaUrl}}" target="_blank" class="btn btn-info" role="button" aria-pressed="true">Descargar Póliza</a>
                     </div>
                   </div>
                 </th>
@@ -152,29 +196,42 @@
           <div class="col-md-6">
             <div class="form-group">
               <input type="text" id="productName" style="background-color : #5e72e4; color: white;" ngModel
-                name="productName" #productName="ngModel" (change)="log(productName)" placeholder="Nombre de Póliza"
-                class="form-control form-control-alternative" required>
+                name="productName" #productName="ngModel" (change)="log(productName)"
+                placeholder="{{poliza.productName}}" class="form-control form-control-alternative" required>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <input type="text" id="aseguradora" style="background-color : #5e72e4; color: white;" ngModel
-                name="aseguradora" placeholder="Aseguradora" class="form-control form-control-alternative" required>
+                name="aseguradora" placeholder="{{poliza.aseguradora.nombre}}"
+                class="form-control form-control-alternative" required>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <input type="text" id="polizaNumber" style="background-color : #5e72e4; color: white;" ngModel
-                name="polizaNumber" placeholder="Número de Póliza" class="form-control form-control-alternative"
+                name="polizaNumber" placeholder="{{poliza.polizaNumber}}" class="form-control form-control-alternative"
                 required>
+            </div> -->
+            <div class="form-group">
+
+
+              <select ngModel id="asegurado" aria-placeholder="" name="asegurado"
+                style="background-color : #5e72e4; color: white;" class="form-control form-control-alternative">
+                <option hidden selected>Selecciona tu Poliza</option>
+                <option selected>
+                  {{poliza.polizaNumber}}
+                </option>
+              </select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <input type="text" id="asegurado" style="background-color : #5e72e4; color: white;" ngModel
-                name="asegurado" placeholder="Asegurado" class="form-control form-control-alternative" required>
+                name="asegurado" placeholder="{{poliza.asegurado}}" class="form-control form-control-alternative"
+                required>
             </div>
           </div>
         </div>
@@ -182,7 +239,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <input type="text" id="tipo" style="background-color : #5e72e4; color: white;" ngModel name="tipo"
-                placeholder="Tipo" class="form-control form-control-alternative" required>
+                placeholder="{{poliza.tipo}}" class="form-control form-control-alternative" required>
             </div>
           </div>
           <div class="col-md-6">
