@@ -9,7 +9,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Clientes Registrados</h5>
-                  <span class="h2 font-weight-bold mb-0">COUNT</span>
+                  <span class="h2 font-weight-bold mb-0">{{clientesCount}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -18,11 +18,52 @@
                 </div>
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 5.85%</span>
+                <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 5.85%</span> -->
                 <span class="text-wrap"></span>
               </p>
             </div>
           </div>
+        </div>
+
+        <div class="col-xl-9 col-lg-6">
+          <form #templateForm="ngForm" (submit)="onSubmit(templateForm.value)">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" id="name" ngModel name="name" #name="ngModel" (change)="log(name)"
+                    placeholder="Nombre" class="form-control form-control-alternative" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" id="lastName" ngModel name="lastName" placeholder="Apellidos"
+                    class="form-control form-control-alternative" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="email" id="email" ngModel name="email" placeholder="Correo Electrónico"
+                    class="form-control form-control-alternative" required>
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" id="telefono" ngModel name="telefono" placeholder="Teléfono"
+                    class="form-control form-control-alternative" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col-md-6">
+                <button type="submit" class="btn btn-success">Añadir Cliente</button>
+              </div>
+            </div>
+          </form>
+
         </div>
 
 
@@ -46,39 +87,126 @@
           <table class="table align-items-center table-dark table-flush">
             <thead class="thead-dark">
               <tr>
+                <th scope="col">Nombre</th>
                 <th scope="col">Email Asegurado</th>
-                <th scope="col">Tipo de Póliza</th>
-                <th scope="col">Número de Póliza</th>
-                <th scope="col">Fecha</th>
+
+                <th scope="col">Teléfono</th>
+                <th scope="col">Acciones</th>
 
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let siniestro of totalSiniestros">
+
+              <tr *ngFor="let cliente of totalClientes">
                 <th scope="row">
                   <div class="media align-items-center">
 
                     <div class="media-body">
-                      <span class="mb-0 text-sm">EMAIL</span>
+                      <span class="mb-0 text-sm">{{cliente.name}} {{cliente.lastName}}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  CLIENTE
+                  {{cliente.email}}
                 </td>
                 <td>
 
-                  CLIENTE
+                  {{cliente.telefono}}
 
                 </td>
-                <td>
-                  CLIENTE
-                </td>
+                <th scope="row">
+                  <div class="media align-items-center">
+
+                    <div class="media-body">
+                      <button class="btn btn-primary" (click)="myFunction(cliente.email)">Editar</button>
+                      <button class="btn btn-danger" (click)="myFunction(cliente.telefono)">Eliminar</button>
+                    </div>
+                  </div>
+                </th>
+
+
               </tr>
+
+
             </tbody>
           </table>
+
         </div>
       </div>
     </div>
   </div>
+
+  <div *ngFor="let cliente of totalClientes">
+    <div id="{{cliente.email}}" class="col-xl-9 col-lg-6 my-5 mx-auto" style="display: none;">
+      <form #templateForm="ngForm" (submit)="onEdit(templateForm.value)">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="name" style="background-color : #5e72e4; color: white;" ngModel name="name"
+                #name="ngModel" (change)="log(name)" placeholder="{{cliente.name}}"
+                class="form-control form-control-alternative" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="lastName" style="background-color : #5e72e4; color: white;" ngModel name="lastName"
+                placeholder="{{cliente.lastName}}" class="form-control form-control-alternative" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+
+              <input ngModel type="email" id="email" style="background-color : #5e72e4; color: white;" name="email"
+                class="form-control form-control-alternative" required>
+
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="telefono" style="background-color : #5e72e4; color: white;" ngModel name="telefono"
+                placeholder="{{cliente.telefono}}" class="form-control form-control-alternative" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-primary">Editar Cliente</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <div *ngFor="let cliente of totalClientes">
+    <div id="{{cliente.telefono}}" class="col-xl-9 col-lg-6 my-5 mx-auto" style="display: none;">
+      <h1 class="text-danger">Introduce el Correo del Cliente para confirmar la operación</h1>
+      <form #templateForm="ngForm" (submit)="onDelete(templateForm.value)">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+
+              <input ngModel type="email" id="email" style="background-color : #f5365c; color: white;" name="email"
+                class="form-control form-control-alternative" required>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-danger">Eliminar Cliente</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+
 </div>

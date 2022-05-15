@@ -19,7 +19,7 @@
                   </div>
                 </div>
                 <p class="mt-3 mb-0 text-muted text-sm">
-                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                  <!-- <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span> -->
                   <span class="text-wrap">Desde el Anterior Mes Total
                   </span>
                 </p>
@@ -28,17 +28,18 @@
           </div>
 
           <div class="col-xl-9 col-lg-6">
-            <form action="https://paep22-backend.herokuapp.com/poliza" method="post">
+            <form #templateForm="ngForm" (submit)="onSubmit(templateForm.value)">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" name="productName" placeholder="Nombre de Póliza"
+                    <input type="text" id="productName" ngModel name="productName" #productName="ngModel"
+                      (change)="log(productName)" placeholder="Nombre de Póliza"
                       class="form-control form-control-alternative" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" name="aseguradora" placeholder="Aseguradora"
+                    <input type="text" id="aseguradora" ngModel name="aseguradora" placeholder="Aseguradora"
                       class="form-control form-control-alternative" required>
                   </div>
                 </div>
@@ -46,13 +47,13 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" name="polizaNumber" placeholder="Número de Póliza"
+                    <input type="text" id="polizaNumber" ngModel name="polizaNumber" placeholder="Número de Póliza"
                       class="form-control form-control-alternative" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" name="asegurado" placeholder="Asegurado"
+                    <input type="text" id="asegurado" ngModel name="asegurado" placeholder="Asegurado"
                       class="form-control form-control-alternative" required>
                   </div>
                 </div>
@@ -60,8 +61,8 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" name="tipo" placeholder="Tipo" class="form-control form-control-alternative"
-                      required>
+                    <input type="text" id="tipo" ngModel name="tipo" placeholder="Tipo"
+                      class="form-control form-control-alternative" required>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -69,6 +70,7 @@
                 </div>
               </div>
             </form>
+
           </div>
 
           <!-- <app-polizas-form></app-polizas-form> -->
@@ -104,6 +106,7 @@
                 <th scope="col">Tipo de Póliza</th>
                 <th scope="col">Número de Póliza</th>
                 <th scope="col">Fecha de Vencimiento</th>
+                <th scope="col">Acciones</th>
 
               </tr>
             </thead>
@@ -125,6 +128,15 @@
                 <td>
                   {{poliza.fechaVencimiento | date}} {{poliza.fechaVencimiento | date:'longTime'}}
                 </td>
+                <th scope="row">
+                  <div class="media align-items-center">
+
+                    <div class="media-body">
+                      <button class="btn btn-primary" (click)="myFunction(poliza.productName)">Editar</button>
+                      <button class="btn btn-danger" (click)="myFunction(poliza.polizaNumber)">Eliminar</button>
+                    </div>
+                  </div>
+                </th>
               </tr>
             </tbody>
           </table>
@@ -133,25 +145,79 @@
     </div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <div *ngFor="let poliza of totalPolizas">
+    <div id="{{poliza.productName}}" class="col-xl-9 col-lg-6 my-5 mx-auto" style="display: none;">
+      <form #templateForm="ngForm" (submit)="onEdit(templateForm.value)">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="productName" style="background-color : #5e72e4; color: white;" ngModel
+                name="productName" #productName="ngModel" (change)="log(productName)" placeholder="Nombre de Póliza"
+                class="form-control form-control-alternative" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="aseguradora" style="background-color : #5e72e4; color: white;" ngModel
+                name="aseguradora" placeholder="Aseguradora" class="form-control form-control-alternative" required>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-          ...
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="polizaNumber" style="background-color : #5e72e4; color: white;" ngModel
+                name="polizaNumber" placeholder="Número de Póliza" class="form-control form-control-alternative"
+                required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="asegurado" style="background-color : #5e72e4; color: white;" ngModel
+                name="asegurado" placeholder="Asegurado" class="form-control form-control-alternative" required>
+            </div>
+          </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="tipo" style="background-color : #5e72e4; color: white;" ngModel name="tipo"
+                placeholder="Tipo" class="form-control form-control-alternative" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-primary">Editar Póliza</button>
+          </div>
         </div>
-      </div>
+      </form>
+
+    </div>
+  </div>
+
+  <div *ngFor="let poliza of totalPolizas">
+    <div id="{{poliza.polizaNumber}}" class="col-xl-9 col-lg-6 my-5 mx-auto" style="display: none;">
+      <h1 class="text-danger">Introduce el Número de Poliza para confirmar la operación</h1>
+      <form #templateForm="ngForm" (submit)="onDelete(templateForm.value)">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+
+              <input ngModel type="text" id="polizaNumber" style="background-color : #f5365c; color: white;"
+                name="polizaNumber" class="form-control form-control-alternative" required>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-danger">Eliminar Póliza</button>
+          </div>
+        </div>
+      </form>
+
     </div>
   </div>
 

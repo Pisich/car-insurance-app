@@ -1,0 +1,41 @@
+<form #polizasForm="ngForm" (ngSubmit)="submit(polizasForm)">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="text" id="productName" ngModel name="productName" #productName="ngModel" (change)="log(productName)" placeholder="Nombre de Póliza"
+            class="form-control form-control-alternative" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="text" id="aseguradora" ngModel  name="aseguradora" placeholder="Aseguradora"
+            class="form-control form-control-alternative" required>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="text" id="polizaNumber" ngModel  name="polizaNumber" placeholder="Número de Póliza"
+            class="form-control form-control-alternative" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="text" id="asegurado" ngModel  name="asegurado" placeholder="Asegurado"
+            class="form-control form-control-alternative" required>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="text" id="tipo" ngModel  name="tipo" placeholder="Tipo" class="form-control form-control-alternative"
+            required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-success">Añadir Póliza</button>
+      </div>
+    </div>
+  </form>
