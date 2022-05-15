@@ -19,6 +19,7 @@ import { PolizasComponent } from './pages/polizas/polizas.component';
 import { TablesComponent } from './pages/tables/tables.component';
 import { CustomersComponent } from './pages/customers/customers.component';
 import { PolizasFormComponent } from './polizas-form/polizas-form.component';
+import { AseguradoraComponent } from './aseguradora/aseguradora.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { PolizasFormComponent } from './polizas-form/polizas-form.component';
     CustomersComponent,
     AuthLayoutComponent,
     ClientesComponent,
-    PolizasFormComponent
+    PolizasFormComponent,
+    AseguradoraComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,7 +8,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { PolizasComponent } from 'src/app/pages/polizas/polizas.component';
 import { ClientesComponent } from 'src/app/clientes/clientes.component';
 import { CustomersComponent } from 'src/app/pages/customers/customers.component';
-
+import { AseguradoraComponent } from 'src/app/aseguradora/aseguradora.component';
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'perfil',   component: UserProfileComponent },
@@ -16,5 +16,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'polizas',         component: PolizasComponent },
     { path: 'clientes',         component: CustomersComponent },
     { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent }
+    { path: 'maps',           component: MapsComponent },
+    { path: 'aseguradora',      component: AseguradoraComponent}
 ];
