@@ -25,6 +25,8 @@ export class DashboardComponent implements OnInit {
   public clicked1: boolean = false;
   c_polizas: BigInteger;
   c_siniestros: BigInteger;
+  c_aseguradoras: BigInteger;
+  c_clientes: BigInteger;
 
   constructor(private http: HttpClient) {}
 
@@ -40,6 +42,18 @@ export class DashboardComponent implements OnInit {
     .get<any>("https://paep22-backend.herokuapp.com/siniestro/last24hrs")
     .subscribe((data) => {
      this.c_siniestros = data.length;
+    });
+
+    this.http
+    .get<any>("https://paep22-backend.herokuapp.com/aseguradora")
+    .subscribe((data) => {
+     this.c_aseguradoras = data.length;
+    });
+
+    this.http
+    .get<any>("https://paep22-backend.herokuapp.com/customer")
+    .subscribe((data) => {
+     this.c_clientes = data.length;
     });
 
     this.datasets = [

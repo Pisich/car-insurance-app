@@ -19,7 +19,7 @@
                   </div>
                 </div>
                 <p class="mt-3 mb-0 text-muted text-sm">
-                  <!-- <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span> -->
+
                   <span class="text-wrap">Desde el Anterior Mes Total
                   </span>
                 </p>
@@ -41,9 +41,16 @@
                   </div>
                 </div>
                 <div class="col-md-6">
+
                   <div class="form-group">
-                    <input type="text" id="aseguradora" ngModel name="aseguradora" #aseguradora="ngModel"
-                      placeholder="Aseguradora" class="form-control form-control-alternative" required>
+
+
+                    <select ngModel id="aseguradora" name="aseguradora" #aseguradora="ngModel"
+                      class="form-control form-control-alternative">
+                      <option hidden selected>Aseguradora</option>
+                      <option *ngFor="let aseguradora of totalAseguradoras">
+                        {{aseguradora.nombre}}</option>
+                    </select>
                     <div *ngIf="aseguradora.touched && !aseguradora.valid" class="alert alert-info mt-1" role="alert">
                       <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
                       <span class="alert-inner--text">Asegúrate de haber llenado el campo</span>
@@ -52,16 +59,7 @@
                 </div>
               </div>
               <div class="row">
-                <!-- <div class="col-md-6">
-                  <div class="form-group">
-                    <input type="text" id="polizaNumber" ngModel name="polizaNumber" #polizaNumber="ngModel"
-                      placeholder="Número de Póliza" class="form-control form-control-alternative" required>
-                    <div *ngIf="polizaNumber.touched && !polizaNumber.valid" class="alert alert-info mt-1" role="alert">
-                      <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
-                      <span class="alert-inner--text">Asegúrate de haber llenado el campo</span>
-                    </div>
-                  </div>
-                </div> -->
+
                 <div class="col-md-12">
 
                   <div class="form-group">
@@ -94,29 +92,27 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <input type="file" id="filename" ngModel name="filename" #filename="ngModel" placeholder="Archivo"
-                    class="form-control form-control-alternative" required (input)="selectFile($event)">
+                      class="form-control form-control-alternative" required (input)="selectFile($event)">
                   </div>
-                  
-                  <!-- <button type="submit" class="btn btn-success">Añadir Póliza</button> -->
+
+
                 </div>
-                
+
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <button type="submit" class="btn btn-success">Añadir Póliza</button>
                 </div>
-                <!-- <div class="col-md-6">
-                  <button [disabled]="image === undefined" (click)="uploadPoliza()" class="btn btn-success">Subir Archivo</button>
-                </div> -->
+
               </div>
-              
+
 
 
             </form>
 
           </div>
 
-          <!-- <app-polizas-form></app-polizas-form> -->
+
         </div>
 
 
@@ -177,7 +173,8 @@
                     <div class="media-body">
                       <button class="btn btn-primary" (click)="myFunction(poliza.productName)">Editar</button>
                       <button class="btn btn-danger" (click)="myFunction(poliza.polizaNumber)">Eliminar</button>
-                      <a href="{{poliza.polizaUrl}}" target="_blank" class="btn btn-info" role="button" aria-pressed="true">Descargar Póliza</a>
+                      <a href="{{poliza.polizaUrl}}" target="_blank" class="btn btn-info" role="button"
+                        aria-pressed="true">Descargar Póliza</a>
                     </div>
                   </div>
                 </th>
@@ -193,35 +190,25 @@
     <div id="{{poliza.productName}}" class="col-xl-9 col-lg-6 my-5 mx-auto" style="display: none;">
       <form #templateForm="ngForm" (submit)="onEdit(templateForm.value)">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
               <input type="text" id="productName" style="background-color : #5e72e4; color: white;" ngModel
                 name="productName" #productName="ngModel" (change)="log(productName)"
                 placeholder="{{poliza.productName}}" class="form-control form-control-alternative" required>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <input type="text" id="aseguradora" style="background-color : #5e72e4; color: white;" ngModel
-                name="aseguradora" placeholder="{{poliza.aseguradora.nombre}}"
-                class="form-control form-control-alternative" required>
-            </div>
-          </div>
+
         </div>
         <div class="row">
           <div class="col-md-6">
-            <!-- <div class="form-group">
-              <input type="text" id="polizaNumber" style="background-color : #5e72e4; color: white;" ngModel
-                name="polizaNumber" placeholder="{{poliza.polizaNumber}}" class="form-control form-control-alternative"
-                required>
-            </div> -->
+
             <div class="form-group">
 
 
-              <select ngModel id="asegurado" aria-placeholder="" name="asegurado"
-                style="background-color : #5e72e4; color: white;" class="form-control form-control-alternative">
-                <option hidden selected>Selecciona tu Poliza</option>
-                <option selected>
+              <select ngModel id="polizaNumber" name="polizaNumber" style="background-color : #5e72e4; color: white;"
+                class="form-control form-control-alternative">
+                <option style=" color: white;" hidden selected>Selecciona tu Poliza</option>
+                <option>
                   {{poliza.polizaNumber}}
                 </option>
               </select>

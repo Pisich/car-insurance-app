@@ -12,6 +12,7 @@ export class PolizasComponent implements OnInit {
   totalPolizas;
   polizasCount: BigInteger;
   totalClientes;
+  totalAseguradoras;
   image;
 
   constructor(private http: HttpClient) {
@@ -25,6 +26,11 @@ export class PolizasComponent implements OnInit {
       .get<any>("https://paep22-backend.herokuapp.com/customer")
       .subscribe((data) => {
         this.totalClientes = data;
+      });
+    this.http
+      .get<any>("https://paep22-backend.herokuapp.com/aseguradora")
+      .subscribe((data) => {
+        this.totalAseguradoras = data;
       });
   }
 

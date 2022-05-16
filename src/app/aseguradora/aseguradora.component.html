@@ -30,22 +30,34 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" id="RFC" ngModel name="RFC" #name="ngModel"
-                    placeholder="RFC" class="form-control form-control-alternative" required>
+                  <input type="text" id="RFC" ngModel name="RFC" #RFC="ngModel" placeholder="RFC"
+                    class="form-control form-control-alternative" required>
+                  <div *ngIf="RFC.touched && !RFC.valid" class="alert alert-info mt-1" role="alert">
+                    <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                    <span class="alert-inner--text"> Asegúrate de haber llenado el campo</span>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" id="nombre" ngModel name="nombre" placeholder="Nombre"
+                  <input type="text" id="nombre" ngModel name="nombre" #nombre="ngModel" placeholder="Nombre"
                     class="form-control form-control-alternative" required>
+                  <div *ngIf="nombre.touched && !nombre.valid" class="alert alert-info mt-1" role="alert">
+                    <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                    <span class="alert-inner--text"> Asegúrate de haber llenado el campo</span>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input id="telefono" ngModel name="telefono" placeholder="Teléfono"
+                  <input id="telefono" ngModel name="telefono" #telefono="ngModel" placeholder="Teléfono"
                     class="form-control form-control-alternative" required>
+                  <div *ngIf="telefono.touched && !telefono.valid" class="alert alert-info mt-1" role="alert">
+                    <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                    <span class="alert-inner--text"> Asegúrate de haber llenado el campo</span>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">
@@ -107,7 +119,7 @@
 
                     <div class="media-body">
                       <button class="btn btn-primary" (click)="myFunction(aseguradora.RFC)">Editar</button>
-                      <button class="btn btn-danger" (click)="myFunction(aseguradora.RFC)">Eliminar</button>
+                      <button class="btn btn-danger" (click)="myFunction(aseguradora.telefono)">Eliminar</button>
                     </div>
                   </div>
                 </th>
@@ -153,7 +165,7 @@
   </div>
 
   <div *ngFor="let aseguradora of totalAseguradoras">
-    <div id="{{aseguradora.RFC}}" class="col-xl-9 col-lg-6 my-5 mx-auto" style="display: none;">
+    <div id="{{aseguradora.telefono}}" class="col-xl-9 col-lg-6 my-5 mx-auto" style="display: none;">
       <h1 class="text-danger">Introduce el RFC de la Aseguradora para confirmar la operación</h1>
       <form #templateForm="ngForm" (submit)="onDelete(templateForm.value)">
 

@@ -17,7 +17,8 @@ export class UserProfileComponent implements OnInit {
       });
   }
 
-  onSubmit(value) {
+  onSubmit(value, email) {
+    value['email'] = email;
     console.log(value);
 
     this.http.put(

@@ -30,29 +30,44 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" id="name" ngModel name="name" #name="ngModel" (change)="log(name)"
-                    placeholder="Nombre" class="form-control form-control-alternative" required>
+                  <input type="text" id="name" ngModel name="name" #name="ngModel" placeholder="Nombre"
+                    class="form-control form-control-alternative" required>
+                  <div *ngIf="name.touched && !name.valid" class="alert alert-info mt-1" role="alert">
+                    <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                    <span class="alert-inner--text"> Asegúrate de haber llenado el campo</span>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" id="lastName" ngModel name="lastName" placeholder="Apellidos"
+                  <input type="text" id="lastName" ngModel name="lastName" #lastName="ngModel" placeholder="Apellidos"
                     class="form-control form-control-alternative" required>
+                  <div *ngIf="lastName.touched && !lastName.valid" class="alert alert-info mt-1" role="alert">
+                    <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                    <span class="alert-inner--text"> Asegúrate de haber llenado el campo</span>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="email" id="email" ngModel name="email" placeholder="Correo Electrónico"
+                  <input type="email" id="email" ngModel name="email" #email="ngModel" placeholder="Correo Electrónico"
                     class="form-control form-control-alternative" required>
-
+                  <div *ngIf="email.touched && !email.valid" class="alert alert-info mt-1" role="alert">
+                    <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                    <span class="alert-inner--text"> Asegúrate de haber llenado el campo</span>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" id="telefono" ngModel name="telefono" placeholder="Teléfono"
+                  <input type="text" id="telefono" ngModel name="telefono" #telefono="ngModel" placeholder="Teléfono"
                     class="form-control form-control-alternative" required>
+                  <div *ngIf="telefono.touched && !telefono.valid" class="alert alert-info mt-1" role="alert">
+                    <span class="alert-inner--icon"><i class="ni ni-notification-70 mr-2"></i></span>
+                    <span class="alert-inner--text"> Asegúrate de haber llenado el campo</span>
+                  </div>
                 </div>
               </div>
             </div>
