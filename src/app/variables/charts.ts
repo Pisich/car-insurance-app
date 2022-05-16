@@ -343,10 +343,10 @@ export const chartExample2 = {
     }
   },
   data: {
-    labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: ["Aseguradoras", "Clientes", "Pólizas", "Siniestros"],
     datasets: [
       {
-        label: "Sales",
+        label: "Cantidad",
         data: [25, 20, 30, 22, 17, 29],
         maxBarThickness: 10
       }
